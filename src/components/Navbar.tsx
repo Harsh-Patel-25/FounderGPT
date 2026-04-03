@@ -1,4 +1,4 @@
-import { Rocket, Menu, X } from "lucide-react";
+import { Rocket, Menu, X, User } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "Dashboard", href: "/" },
-    { label: "Analyze", href: "/analyze" },
+    { label: "Docs", href: "/docs" },
     { label: "About", href: "/about" },
   ];
 
@@ -34,9 +34,12 @@ const Navbar = () => {
               {link.label}
             </Link>
           ))}
-          <button className="h-9 px-4 rounded-lg bg-primary text-primary-foreground text-sm font-semibold transition-all hover:opacity-90 glow-primary">
-            Get Started
-          </button>
+          <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent font-medium">
+            CodeTitans
+          </span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-muted-foreground">
+            <User className="h-4 w-4" />
+          </div>
         </div>
 
         {/* Mobile toggle */}
