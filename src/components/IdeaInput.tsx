@@ -1,16 +1,18 @@
 import { Sparkles, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
-const IdeaInput = () => {
-  const [idea, setIdea] = useState("");
-  const [loading, setLoading] = useState(false);
+interface IdeaInputProps {
+  onAnalyze: () => void;
+  loading: boolean;
+}
 
-  const handleSubmit = async (e: React.FormEvent) => {
+const IdeaInput = ({ onAnalyze, loading }: IdeaInputProps) => {
+  const [idea, setIdea] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!idea.trim()) return;
-    setLoading(true);
-    // Future: call analyzeIdea service
-    setTimeout(() => setLoading(false), 1500);
+    onAnalyze();
   };
 
   return (
@@ -35,7 +37,7 @@ const IdeaInput = () => {
           <textarea
             value={idea}
             onChange={(e) => setIdea(e.target.value)}
-            placeholder="Describe your startup idea..."
+            placeholder="e.g. AI fitness coach for home workouts"
             rows={4}
             className="w-full rounded-xl bg-card border border-border/60 px-5 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none transition-all"
           />
@@ -48,7 +50,7 @@ const IdeaInput = () => {
               <span className="animate-spin h-4 w-4 border-2 border-primary-foreground border-t-transparent rounded-full" />
             ) : (
               <>
-                Analyze Idea
+                Analyze Startup
                 <ArrowRight className="h-4 w-4" />
               </>
             )}
