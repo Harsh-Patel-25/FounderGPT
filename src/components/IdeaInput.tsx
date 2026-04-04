@@ -2,7 +2,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 interface IdeaInputProps {
-  onAnalyze: () => void;
+  onAnalyze: (idea: string) => void;
   loading: boolean;
 }
 
@@ -11,8 +11,8 @@ const IdeaInput = ({ onAnalyze, loading }: IdeaInputProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!idea.trim()) return;
-    onAnalyze();
+    if (!idea.trim() || loading) return;
+    onAnalyze(idea);
   };
 
   return (

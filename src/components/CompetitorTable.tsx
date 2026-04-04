@@ -6,15 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import type { CompetitorInsight } from "@/types";
 
-const competitors = [
-  { name: "MyFitnessPal", strength: "Large user base (200M+)", weakness: "Limited AI features" },
-  { name: "Fitbod", strength: "Smart workout plans", weakness: "Expensive subscription" },
-  { name: "Peloton", strength: "Strong brand & community", weakness: "Hardware dependency" },
-  { name: "Apple Fitness+", strength: "Ecosystem integration", weakness: "No personalized coaching" },
-];
+interface CompetitorTableProps {
+  competitors: CompetitorInsight[];
+}
 
-const CompetitorTable = () => (
+const CompetitorTable = ({ competitors }: CompetitorTableProps) => (
   <section className="py-12">
     <div className="container max-w-5xl">
       <div className="glass rounded-xl p-6">
@@ -31,8 +29,8 @@ const CompetitorTable = () => (
             {competitors.map((c) => (
               <TableRow key={c.name} className="border-border/30 hover:bg-secondary/40 transition-colors">
                 <TableCell className="font-medium text-foreground">{c.name}</TableCell>
-                <TableCell className="text-muted-foreground">{c.strength}</TableCell>
-                <TableCell className="text-muted-foreground">{c.weakness}</TableCell>
+                <TableCell className="text-muted-foreground">{c.strengths.join(", ")}</TableCell>
+                <TableCell className="text-muted-foreground">{c.weaknesses.join(", ")}</TableCell>
               </TableRow>
             ))}
           </TableBody>
