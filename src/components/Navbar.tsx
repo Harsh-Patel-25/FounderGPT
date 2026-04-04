@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { SwitchMode } from "@/components/ui/switch-mode";
+import { ContinuousTabs } from "@/components/ui/continuous-tabs";
+
 
 const Navbar = () => {
 
@@ -49,30 +51,28 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent font-medium">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-4">
+          <ContinuousTabs tabs={navLinks.map(link => ({ id: link.label.toLowerCase(), label: link.label, href: link.href }))} />
+          
+          <div className="h-6 w-px bg-border/40" />
+          
+          <span className="text-[10px] uppercase tracking-[0.2em] px-3 py-1.5 rounded-full bg-accent/5 border border-accent/20 text-accent font-black">
             CodeTitans
           </span>
+
 
           {/* Auth Section */}
           {isAuthenticated && user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-9 w-9 rounded-full bg-secondary">
-                  <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-primary/50 to-primary/30 text-foreground font-semibold text-sm">
+                <Button variant="ghost" size="icon" className="relative rounded-full bg-secondary overflow-hidden ring-offset-background transition-transform hover:scale-105 active:scale-95">
+                  <div className="flex h-full w-full items-center justify-center rounded-full bg-gradient-to-br from-primary/50 to-primary/30 text-foreground font-bold text-sm">
                     {user.fullName.charAt(0).toUpperCase()}
                   </div>
                 </Button>
               </DropdownMenuTrigger>
+
               <DropdownMenuContent align="end" className="w-56">
                 <div className="flex items-center justify-between px-2 py-2 gap-3">
                   <div className="flex flex-col space-y-0.5 overflow-hidden">
