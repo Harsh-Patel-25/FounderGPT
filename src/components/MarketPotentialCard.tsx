@@ -37,24 +37,27 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="glass-blue rounded-2xl p-6 border border-blue-500/20 shadow-lg transition-all hover:scale-[1.02]">
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-400 mb-2">TAM</div>
-              <div className="text-3xl font-black text-blue-50 leading-tight">
+              <div className="text-3xl font-black text-blue-900 dark:text-blue-50 leading-tight">
                 {data.tamSamSom.tam}
               </div>
-              <p className="text-[10px] text-blue-300/60 mt-4 leading-relaxed font-medium">Total Addressable Market</p>
+              <p className="text-[10px] text-blue-700/70 dark:text-blue-300/60 mt-4 leading-relaxed font-medium">Total Addressable Market</p>
+
             </div>
             <div className="glass-purple rounded-2xl p-6 border border-purple-500/20 shadow-lg transition-all hover:scale-[1.02]">
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-purple-400 mb-2">SAM</div>
-              <div className="text-3xl font-black text-purple-50 leading-tight">
+              <div className="text-3xl font-black text-purple-900 dark:text-purple-50 leading-tight">
                 {data.tamSamSom.sam}
               </div>
-              <p className="text-[10px] text-purple-300/60 mt-4 leading-relaxed font-medium">Serviceable Available Market</p>
+              <p className="text-[10px] text-purple-700/70 dark:text-purple-300/60 mt-4 leading-relaxed font-medium">Serviceable Available Market</p>
+
             </div>
             <div className="glass-green rounded-2xl p-6 border border-green-500/20 shadow-lg transition-all hover:scale-[1.02]">
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-green-400 mb-2">SOM</div>
-              <div className="text-3xl font-black text-green-50 leading-tight">
+              <div className="text-3xl font-black text-green-900 dark:text-green-50 leading-tight">
                 {data.tamSamSom.som}
               </div>
-              <p className="text-[10px] text-green-300/60 mt-4 leading-relaxed font-medium">Serviceable Obtainable Market</p>
+              <p className="text-[10px] text-green-700/70 dark:text-green-300/60 mt-4 leading-relaxed font-medium">Serviceable Obtainable Market</p>
+
             </div>
           </div>
 
@@ -119,9 +122,10 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
           {/* Market Penetration */}
           <div className="glass-blue p-6 rounded-2xl border border-blue-500/20">
             <h4 className="text-sm font-black uppercase tracking-widest text-blue-400 mb-4">Market Penetration Strategy</h4>
-            <p className="text-base leading-relaxed text-blue-50 font-medium">
+            <p className="text-base leading-relaxed text-blue-900 dark:text-blue-50 font-medium">
               {data.marketPenetrationStrategy}
             </p>
+
           </div>
 
           {/* Risks & Opportunities */}
@@ -134,9 +138,10 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
               <ul className="space-y-3">
                 {data.marketRisks.map((risk, i) => (
                   <li key={i} className="text-sm flex items-start gap-3">
-                    <span className="text-red-400 opacity-60 mt-1.5">•</span>
-                    <span className="leading-tight text-red-50 font-medium">{risk}</span>
+                    <span className="text-red-600/60 dark:text-red-400 dark:opacity-60 mt-1.5">•</span>
+                    <span className="leading-tight text-red-900 dark:text-red-50 font-medium">{risk}</span>
                   </li>
+
                 ))}
               </ul>
             </div>
@@ -148,9 +153,10 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
               <ul className="space-y-3">
                 {data.opportunities.map((opp, i) => (
                   <li key={i} className="text-sm flex items-start gap-3">
-                    <span className="text-green-400 opacity-60 mt-1.5">•</span>
-                    <span className="leading-tight text-green-50 font-medium">{opp}</span>
+                    <span className="text-green-600/60 dark:text-green-400 dark:opacity-60 mt-1.5">•</span>
+                    <span className="leading-tight text-green-900 dark:text-green-50 font-medium">{opp}</span>
                   </li>
+
                 ))}
               </ul>
             </div>

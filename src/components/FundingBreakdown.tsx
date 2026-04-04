@@ -109,9 +109,10 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                   <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                   Strategic Funding Context
                 </p>
-                <p className="text-base leading-relaxed font-medium text-blue-50">
+                <p className="text-base leading-relaxed font-medium text-blue-900 dark:text-blue-50">
                   {data.fundingStrategy}
                 </p>
+
               </div>
             </TabsContent>
 
@@ -120,15 +121,16 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="glass-red p-6 rounded-2xl border border-red-500/30 shadow-lg shadow-red-900/10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-xl bg-red-500/20 text-red-100">
+                    <div className="p-2.5 rounded-xl bg-red-500/20 text-red-900 dark:text-red-100">
                       <TrendingDown className="w-6 h-6" />
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Monthly Burn</p>
-                      <p className="text-2xl font-black text-white">
+                      <p className="text-2xl font-black text-foreground">
                         {data.burnRate.monthlyBurn}
                       </p>
                     </div>
+
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-red-500 w-[60%] shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
@@ -137,15 +139,16 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
 
                 <div className="glass-orange p-6 rounded-2xl border border-orange-500/30 shadow-lg shadow-orange-900/10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-xl bg-orange-500/20 text-orange-100">
+                    <div className="p-2.5 rounded-xl bg-orange-500/20 text-orange-900 dark:text-orange-100">
                       <Target className="w-6 h-6" />
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Estimated Runway</p>
-                      <p className="text-2xl font-black text-white">
+                      <p className="text-2xl font-black text-foreground">
                         {data.burnRate.runway}
                       </p>
                     </div>
+
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-orange-500 w-[40%] shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
@@ -154,15 +157,16 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
 
                 <div className="glass-green p-6 rounded-2xl border border-green-500/30 shadow-lg shadow-green-900/10">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 rounded-xl bg-green-500/20 text-green-100">
+                    <div className="p-2.5 rounded-xl bg-green-500/20 text-green-900 dark:text-green-100">
                       <DollarSign className="w-6 h-6" />
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Break-Even</p>
-                      <p className="text-2xl font-black text-white">
+                      <p className="text-2xl font-black text-foreground">
                         {data.burnRate.breakEvenTimeline}
                       </p>
                     </div>
+
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-green-500 w-[20%] shadow-[0_0_10px_rgba(34,197,94,0.5)]" />

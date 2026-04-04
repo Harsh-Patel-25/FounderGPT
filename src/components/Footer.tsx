@@ -1,146 +1,96 @@
-import { Rocket, Twitter, Linkedin, Github, Youtube, Mail, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Rocket, Github, Mail, ShieldCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = {
-    product: [
-      { name: "Validation", href: "/dashboard" },
-      { name: "Market Analysis", href: "/dashboard" },
-      { name: "Pitch Deck", href: "/dashboard" },
-      { name: "About FounderGPT", href: "/about" },
-    ],
-    company: [
-      { name: "Our Mission", href: "/about" },
-      { name: "Partner Program", href: "/" },
-      { name: "Contact Support", href: "/" },
-      { name: "Venture Partners", href: "/" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "/" },
-      { name: "Terms of Service", href: "/" },
-      { name: "Cookie Settings", href: "/" },
-    ],
-  };
-
-  const socialLinks = [
-    { name: "Twitter", icon: Twitter, href: "https://twitter.com" },
-    { name: "LinkedIn", icon: Linkedin, href: "https://linkedin.com" },
-    { name: "GitHub", icon: Github, href: "https://github.com/Harsh-Patel-25/FounderGPT" },
-    { name: "YouTube", icon: Youtube, href: "https://youtube.com" },
-  ];
-
   return (
-    <footer className="relative border-t border-border/40 mt-20 overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute inset-0 -z-10 bg-card/30 backdrop-blur-md" />
-      <div className="absolute top-0 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+    <footer className="relative border-t border-border/40 mt-32 overflow-hidden bg-card/30 backdrop-blur-md">
+      {/* Top Accent Gradient */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-50" />
       
       <div className="container max-w-6xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand Column */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-2 group cursor-pointer">
-              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 mb-16">
+          {/* Brand Identity */}
+          <div className="md:col-span-5 space-y-6">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="p-2 rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-all duration-300 transform group-hover:rotate-12">
                 <Rocket className="w-6 h-6 text-primary" />
               </div>
-              <span className="text-xl font-bold gradient-text">FounderGPT</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              The premier AI-powered startup validation platform. We help founders move from "idea" to "execution" with enterprise-grade data and strategic intelligence.
+              <span className="text-2xl font-black tracking-tighter text-foreground">FounderGPT</span>
+            </Link>
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm">
+              The premier AI-powered startup validation platform. We empower founders with high-velocity strategic intelligence to move from idea to execution.
             </p>
             <div className="flex items-center gap-4">
-              {socialLinks.map((social) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2.5 rounded-full glass border border-border/40 hover:border-primary/50 text-muted-foreground hover:text-primary transition-all duration-300 transform hover:-translate-y-1"
-                    aria-label={social.name}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </a>
-                );
-              })}
+              <a
+                href="https://github.com/Harsh-Patel-25/FounderGPT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl glass border border-border/40 hover:border-primary/50 text-xs font-bold text-muted-foreground hover:text-primary transition-all duration-300"
+              >
+                <Github className="w-4 h-4" />
+                Open Source
+              </a>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/5 border border-primary/10 text-xs font-bold text-primary">
+                <ShieldCheck className="w-4 h-4" />
+                Enterprise Validated
+              </div>
             </div>
           </div>
 
-          {/* Links Columns */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-6 uppercase text-xs tracking-widest">Analysis Suite</h4>
-            <ul className="space-y-4">
-              {footerLinks.product.map((link) => (
-                <li key={link.name}>
-                  <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group">
-                    {link.name}
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-foreground mb-6 uppercase text-xs tracking-widest">Ecosystem</h4>
-            <ul className="space-y-4">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <a href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter Column */}
-          <div className="space-y-6">
-            <h4 className="font-semibold text-foreground mb-2 uppercase text-xs tracking-widest">Stay Updated</h4>
-            <p className="text-xs text-muted-foreground">Get the latest on AI startup trends and platform updates.</p>
-            <div className="relative group">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
-              <input
-                type="email"
-                placeholder="founder@startup.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-secondary/30 border border-border/40 focus:border-primary/50 focus:ring-1 focus:ring-primary/20 outline-none transition-all text-sm backdrop-blur-sm"
-              />
+          {/* Navigation Grid */}
+          <div className="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8">
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">Platform</h4>
+              <ul className="space-y-4">
+                <li><Link to="/dashboard" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block transform">Dashboard</Link></li>
+                <li><Link to="/about" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block transform">About Mission</Link></li>
+              </ul>
             </div>
-            <Button className="w-full h-11 rounded-xl glow-primary font-medium hover:scale-[1.02] transition-transform">
-              Join Newsletter
-            </Button>
+
+            <div className="space-y-6">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">Account</h4>
+              <ul className="space-y-4">
+                <li><Link to="/profile" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block transform">Profile Settings</Link></li>
+                <li><Link to="/login" className="text-sm font-semibold text-muted-foreground hover:text-primary transition-colors hover:translate-x-1 inline-block transform">Secure Access</Link></li>
+              </ul>
+            </div>
+
+            <div className="space-y-6 col-span-2 sm:col-span-1">
+              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/60">Connect</h4>
+              <a 
+                href="mailto:support@foundergpt.com" 
+                className="flex items-center gap-3 p-3 rounded-2xl bg-secondary/50 border border-border/40 hover:border-primary/30 transition-all group"
+              >
+                <Mail className="w-4 h-4 text-primary" />
+                <span className="text-xs font-bold text-foreground">Write to Us</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-border/20 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-            <p className="text-xs text-muted-foreground opacity-60">
-              © {currentYear} FounderGPT. All rights reserved.
+        {/* Global Footer Bottom */}
+        <div className="pt-8 border-t border-border/20 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8 order-2 md:order-1">
+            <p className="text-[11px] font-medium text-muted-foreground/60 italic">
+              © {currentYear} FounderGPT Platform. Optimized for Modern Web Standards.
             </p>
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/5 border border-primary/10">
+            <div className="h-4 w-px bg-border/40 hidden md:block" />
+            <div className="flex items-center gap-3 px-4 py-2 rounded-full glass border border-border/40 group">
               <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40 font-bold">
                 Produced by
               </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] font-black gradient-text group-hover:glow-primary transition-all">
+              <span className="text-[11px] uppercase tracking-[0.3em] font-black gradient-text group-hover:scale-110 transition-transform">
                 CodeTitans
               </span>
             </div>
-            <div className="flex items-center gap-6">
-              {footerLinks.legal.map((link) => (
-                <a key={link.name} href={link.href} className="text-[11px] uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors font-medium">
-                  {link.name}
-                </a>
-              ))}
-            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold italic">
-              AI Powered Analysis Engine Live
+
+          <div className="flex items-center gap-3 order-1 md:order-2">
+            <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
+            <span className="text-[10px] uppercase tracking-[0.2em] font-black text-foreground">
+              Core Analysis Engine V2.0 Live
             </span>
           </div>
         </div>
@@ -150,3 +100,4 @@ const Footer = () => {
 };
 
 export default Footer;
+

@@ -103,12 +103,9 @@ const Register = () => {
         return;
       }
 
-      // Store token and user data
-      localStorage.setItem("authToken", data.token);
-      localStorage.setItem("currentUser", JSON.stringify(data.user));
+      // Update auth context (handles persistence automatically)
+      login(data.user, data.token, true);
 
-      // Update auth context
-      login(data.user);
 
       toast({
         title: "Welcome!",

@@ -67,17 +67,19 @@ const GTMStrategyPanel = ({ data }: GTMStrategyPanelProps) => {
               <div className="glass-blue p-6 rounded-2xl border border-blue-500/20 relative group">
                 <div className="absolute -left-2 top-4 w-1 h-8 bg-blue-500 rounded-full" />
                 <p className="text-xs font-black uppercase tracking-widest text-blue-400 mb-2">Strategy Rationale</p>
-                <p className="text-base leading-relaxed text-blue-50 font-medium">
+                <p className="text-base leading-relaxed text-blue-900 dark:text-blue-50 font-medium">
                    {data.marketEntry.rationale}
                 </p>
+
               </div>
 
               <div className="glass-purple p-6 rounded-2xl border border-purple-500/20 relative group">
                 <div className="absolute -left-2 top-4 w-1 h-8 bg-purple-500 rounded-full" />
                 <p className="text-xs font-black uppercase tracking-widest text-purple-400 mb-2">Competitive Edge</p>
-                <p className="text-base leading-relaxed text-purple-50 font-medium">
+                <p className="text-base leading-relaxed text-purple-900 dark:text-purple-50 font-medium">
                   {data.competitivePositioning}
                 </p>
+
               </div>
             </TabsContent>
 
@@ -123,9 +125,10 @@ const GTMStrategyPanel = ({ data }: GTMStrategyPanelProps) => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-base leading-relaxed text-blue-50 font-medium">
+                  <p className="text-base leading-relaxed text-blue-900 dark:text-blue-50 font-medium">
                     {data.priceStrategy}
                   </p>
+
                 </CardContent>
               </Card>
 

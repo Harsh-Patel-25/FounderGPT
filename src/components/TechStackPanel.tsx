@@ -53,9 +53,10 @@ const TechStackPanel = ({ data }: TechStackPanelProps) => {
                     <div className="flex flex-wrap gap-2">
                       {techList.length > 0 ? (
                         techList.map((tech, i) => (
-                          <Badge key={i} variant="secondary" className="bg-white/20 hover:bg-white/30 text-white border-none py-1">
+                          <Badge key={i} variant="secondary" className="bg-black/5 dark:bg-white/20 hover:bg-black/10 dark:hover:bg-white/30 text-black dark:text-white border-none py-1">
                             {tech.trim()}
                           </Badge>
+
                         ))
                       ) : (
                         <span className="text-sm opacity-60 italic">

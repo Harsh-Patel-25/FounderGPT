@@ -56,8 +56,9 @@ const RiskAssessmentPanel = ({ data }: RiskAssessmentPanelProps) => {
                   <div className="flex items-start justify-between mb-4">
                     <div className="space-y-2">
                       <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="bg-white/10 text-white border-white/20 capitalize">{risk.category}</Badge>
-                        <Badge className="bg-white/20 hover:bg-white/30 text-white border-none">{getRiskLevel(risk.probability, risk.impact)}</Badge>
+                        <Badge variant="outline" className="bg-white/10 dark:bg-black/20 text-black dark:text-white border-black/10 dark:border-white/20 capitalize">{risk.category}</Badge>
+                        <Badge className="bg-black/5 dark:bg-white/20 hover:bg-black/10 dark:hover:bg-white/30 text-black dark:text-white border-none">{getRiskLevel(risk.probability, risk.impact)}</Badge>
+
                       </div>
                       <p className="font-bold text-lg leading-tight">{risk.risk}</p>
                     </div>

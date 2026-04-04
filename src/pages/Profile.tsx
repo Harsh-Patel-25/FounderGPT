@@ -11,8 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Mail, User, Lock, ArrowLeft, Trash2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { updateProfile, changePassword as apiChangePassword, deleteAccount } from "@/services/api";
+import { SwitchMode } from "@/components/ui/switch-mode";
 import {
   AlertDialog,
+
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
@@ -221,7 +223,34 @@ const Profile = () => {
                 </form>
               </CardContent>
             </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Appearance</CardTitle>
+                <CardDescription>Customize your viewing experience</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between p-4 rounded-lg bg-accent/5 border border-border/40">
+                  <div className="space-y-0.5">
+                    <Label className="text-base">Theme Preference</Label>
+                    <p className="text-sm text-muted-foreground">
+                      Switch between light and dark modes
+                    </p>
+                  </div>
+                  <SwitchMode 
+                    width={100} 
+                    height={50}
+                    darkColor="#111111"
+                    lightColor="#F9F9F9"
+                    knobDarkColor="#1C1C1C"
+                    knobLightColor="#F3F3F7"
+                    borderDarkColor="#444444"
+                    borderLightColor="#DDDDDD"
+                  />
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
+
 
           {/* Security Tab */}
           <TabsContent value="security" className="space-y-4">

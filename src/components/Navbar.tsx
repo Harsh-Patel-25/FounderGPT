@@ -10,8 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { SwitchMode } from "@/components/ui/switch-mode";
 
 const Navbar = () => {
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
@@ -72,12 +74,16 @@ const Navbar = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <div className="flex items-center justify-between px-2 py-1.5">
-                  <div className="flex flex-col space-y-0.5">
-                    <p className="text-sm font-medium leading-none">{user.fullName}</p>
-                    <p className="text-xs leading-none text-muted-foreground">{user.email}</p>
+                <div className="flex items-center justify-between px-2 py-2 gap-3">
+                  <div className="flex flex-col space-y-0.5 overflow-hidden">
+                    <p className="text-sm font-medium leading-none truncate">{user.fullName}</p>
+                    <p className="text-xs leading-none text-muted-foreground truncate">{user.email}</p>
+                  </div>
+                  <div className="shrink-0">
+                    <SwitchMode width={64} height={32} />
                   </div>
                 </div>
+
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link to="/profile" className="cursor-pointer">

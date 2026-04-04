@@ -39,8 +39,9 @@ const IdeaInput = ({ onAnalyze, loading }: IdeaInputProps) => {
             onChange={(e) => setIdea(e.target.value)}
             placeholder="e.g. AI fitness coach for home workouts"
             rows={4}
-            className="w-full rounded-xl bg-card border border-border/60 px-5 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none transition-all"
+            className="w-full rounded-2xl bg-card/80 backdrop-blur-sm border border-primary/20 px-6 py-5 text-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none transition-all shadow-[0_10px_30px_rgba(0,0,0,0.05)] dark:shadow-[0_0_40px_rgba(34,197,94,0.15)] focus:shadow-[0_0_50px_rgba(34,197,94,0.25)] dark:focus:border-primary/40"
           />
+
           <button
             type="submit"
             disabled={!idea.trim() || loading}
