@@ -177,14 +177,14 @@ const GTMStrategyPanel = ({ data }: GTMStrategyPanelProps) => {
             {/* Key Metrics */}
             <TabsContent value="metrics" className="space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {data.metricsToTrack.map((metric, i) => (
+                {data.metricsToTrack?.map((metric, i) => (
                   <div key={i} className="glass-blue group p-6 rounded-2xl border border-blue-500/20 hover:scale-[1.02] transition-all flex items-center gap-4">
                     <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 group-hover:bg-blue-500 group-hover:text-white transition-colors">
                       <TrendingUp className="w-5 h-5" />
                     </div>
                     <p className="text-base font-bold">{metric}</p>
                   </div>
-                ))}
+                )) || <p className="text-muted-foreground italic p-8 text-center col-span-full">No metrics identified</p>}
               </div>
             </TabsContent>
           </Tabs>

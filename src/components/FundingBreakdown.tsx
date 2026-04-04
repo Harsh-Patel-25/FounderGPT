@@ -9,7 +9,21 @@ interface FundingBreakdownProps {
 }
 
 const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
-  const expenseKeys = Object.entries(data.keyExpenses) as [string, string][];
+  // Use optional chaining and default objects to prevent crashes if data is incomplete
+  const fundingReq = data?.fundingRequirements || {
+    seed: { amount: "N/A", timeframe: "N/A", uses: [] },
+    seriesA: { amount: "N/A", timeframe: "N/A", uses: [] }
+  };
+  
+  const burn = data?.burnRate || {
+    monthlyBurn: "N/A",
+    runway: "N/A",
+    breakEvenTimeline: "N/A"
+  };
+  
+  const team = data?.teamComposition || [];
+  const expenses = data?.keyExpenses || {};
+  const expenseKeys = Object.entries(expenses) as [string, string][];
 
   return (
     <div className="space-y-6">
@@ -40,7 +54,7 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                     <div className="bg-green-500/10 p-3 rounded-lg border border-green-500/20">
                       <p className="text-[10px] uppercase tracking-widest opacity-70 font-bold mb-1">Target Amount</p>
                       <p className="text-3xl font-black text-green-400">
-                        {data.fundingRequirements.seed.amount}
+                        {fundingReq.seed?.amount || "N/A"}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -49,18 +63,18 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                       </div>
                       <div>
                         <p className="text-[10px] uppercase tracking-widest opacity-60 font-bold">Timeline</p>
-                        <p className="text-sm font-semibold">{data.fundingRequirements.seed.timeframe}</p>
+                        <p className="text-sm font-semibold">{fundingReq.seed?.timeframe || "N/A"}</p>
                       </div>
                     </div>
                     <div className="pt-2 border-t border-white/10">
                       <p className="text-[10px] uppercase tracking-widest opacity-60 font-bold mb-3">Allocation</p>
                       <ul className="space-y-2">
-                        {data.fundingRequirements.seed.uses.map((use, i) => (
+                        {fundingReq.seed?.uses?.map((use, i) => (
                           <li key={i} className="text-sm flex items-start gap-2">
                             <span className="text-green-400 mt-1">•</span>
                             <span className="leading-tight opacity-90">{use}</span>
                           </li>
-                        ))}
+                        )) || <li className="text-sm opacity-50 italic text-center">No details available</li>}
                       </ul>
                     </div>
                   </CardContent>
@@ -74,7 +88,7 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                     <div className="bg-blue-500/10 p-3 rounded-lg border border-blue-500/20">
                       <p className="text-[10px] uppercase tracking-widest opacity-70 font-bold mb-1">Target Amount</p>
                       <p className="text-3xl font-black text-blue-400">
-                        {data.fundingRequirements.seriesA.amount}
+                        {fundingReq.seriesA?.amount || "N/A"}
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
@@ -83,18 +97,18 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                       </div>
                       <div>
                         <p className="text-[10px] uppercase tracking-widest opacity-60 font-bold">Horizon</p>
-                        <p className="text-sm font-semibold">{data.fundingRequirements.seriesA.timeframe}</p>
+                        <p className="text-sm font-semibold">{fundingReq.seriesA?.timeframe || "N/A"}</p>
                       </div>
                     </div>
                     <div className="pt-2 border-t border-white/10">
                       <p className="text-[10px] uppercase tracking-widest opacity-60 font-bold mb-3">Scaling Focus</p>
                       <ul className="space-y-2">
-                        {data.fundingRequirements.seriesA.uses.map((use, i) => (
+                        {fundingReq.seriesA?.uses?.map((use, i) => (
                           <li key={i} className="text-sm flex items-start gap-2">
                             <span className="text-blue-400 mt-1">•</span>
                             <span className="leading-tight opacity-90">{use}</span>
                           </li>
-                        ))}
+                        )) || <li className="text-sm opacity-50 italic text-center">No details available</li>}
                       </ul>
                     </div>
                   </CardContent>
@@ -106,13 +120,12 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                   <Target className="w-20 h-20" />
                 </div>
                 <p className="text-xs font-black uppercase tracking-widest text-blue-400 mb-4 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                   Strategic Funding Context
                 </p>
                 <p className="text-base leading-relaxed font-medium text-blue-900 dark:text-blue-50">
-                  {data.fundingStrategy}
+                  {data?.fundingStrategy || "Strategy details not available for this analysis."}
                 </p>
-
               </div>
             </TabsContent>
 
@@ -126,11 +139,10 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Monthly Burn</p>
-                      <p className="text-2xl font-black text-foreground">
-                        {data.burnRate.monthlyBurn}
+                      <p className="text-2xl font-black text-foreground dark:text-white">
+                        {burn.monthlyBurn || "N/A"}
                       </p>
                     </div>
-
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-red-500 w-[60%] shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
@@ -144,11 +156,10 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Estimated Runway</p>
-                      <p className="text-2xl font-black text-foreground">
-                        {data.burnRate.runway}
+                      <p className="text-2xl font-black text-foreground dark:text-white">
+                        {burn.runway || "N/A"}
                       </p>
                     </div>
-
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-orange-500 w-[40%] shadow-[0_0_10px_rgba(249,115,22,0.5)]" />
@@ -162,11 +173,10 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase tracking-widest opacity-80 font-bold">Break-Even</p>
-                      <p className="text-2xl font-black text-foreground">
-                        {data.burnRate.breakEvenTimeline}
+                      <p className="text-2xl font-black text-foreground dark:text-white">
+                        {burn.breakEvenTimeline || "N/A"}
                       </p>
                     </div>
-
                   </div>
                   <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-green-500 w-[20%] shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
@@ -188,20 +198,24 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-border/30">
-                      {data.teamComposition.map((member, i) => (
+                      {team.length > 0 ? team.map((member, i) => (
                         <tr key={i} className="hover:bg-primary/5 transition-colors group">
                           <td className="px-6 py-5 text-sm font-bold text-foreground flex items-center gap-3">
                             <div className="w-2 h-2 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
-                            {member.role}
+                            {member.role || "Role N/A"}
                           </td>
-                          <td className="px-6 py-5 text-sm font-medium text-primary">{member.salary}</td>
+                          <td className="px-6 py-5 text-sm font-medium text-primary">{member.salary || "N/A"}</td>
                           <td className="px-6 py-5">
                             <Badge variant="outline" className="text-[10px] bg-secondary/30 px-3 py-1 font-bold">
-                              {member.timing}
+                              {member.timing || "N/A"}
                             </Badge>
                           </td>
                         </tr>
-                      ))}
+                      )) : (
+                        <tr>
+                          <td colSpan={3} className="px-6 py-10 text-center text-muted-foreground italic">No team composition data available</td>
+                        </tr>
+                      )}
                     </tbody>
                   </table>
                 </div>
@@ -211,7 +225,7 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
             {/* Budget Breakdown */}
             <TabsContent value="expenses" className="animate-in fade-in slide-in-from-bottom-2 duration-300">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {expenseKeys.map(([key, value]) => (
+                {expenseKeys.length > 0 ? expenseKeys.map(([key, value]) => (
                   <div key={key} className="glass group hover:bg-primary/5 transition-all p-6 rounded-2xl border border-border/50 hover:border-primary/30 shadow-lg relative overflow-hidden">
                     <div className="absolute -right-4 -bottom-4 p-4 opacity-[0.03] group-hover:opacity-10 transition-opacity">
                       <Target className="w-24 h-24" />
@@ -224,7 +238,11 @@ const FundingBreakdown = ({ data }: FundingBreakdownProps) => {
                        <div className="h-full bg-primary/40 w-[var(--val,50%)] group-hover:w-[var(--val,70%)] transition-all duration-500" />
                     </div>
                   </div>
-                ))}
+                )) : (
+                  <div className="col-span-full p-12 text-center border-2 border-dashed rounded-2xl opacity-50 italic">
+                    Budget details not available
+                  </div>
+                )}
               </div>
             </TabsContent>
           </Tabs>

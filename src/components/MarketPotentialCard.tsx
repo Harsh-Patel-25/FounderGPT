@@ -136,13 +136,12 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
                 Market Risks
               </h4>
               <ul className="space-y-3">
-                {data.marketRisks.map((risk, i) => (
+                {data.marketRisks?.map((risk, i) => (
                   <li key={i} className="text-sm flex items-start gap-3">
                     <span className="text-red-600/60 dark:text-red-400 dark:opacity-60 mt-1.5">•</span>
                     <span className="leading-tight text-red-900 dark:text-red-50 font-medium">{risk}</span>
                   </li>
-
-                ))}
+                )) || <li className="text-sm opacity-50 italic">No risks identified</li>}
               </ul>
             </div>
             <div className="glass-green p-6 rounded-2xl border border-green-500/20">
@@ -151,13 +150,12 @@ const MarketPotentialCard = ({ data }: MarketPotentialCardProps) => {
                 Key Opportunities
               </h4>
               <ul className="space-y-3">
-                {data.opportunities.map((opp, i) => (
+                {data.opportunities?.map((opp, i) => (
                   <li key={i} className="text-sm flex items-start gap-3">
                     <span className="text-green-600/60 dark:text-green-400 dark:opacity-60 mt-1.5">•</span>
                     <span className="leading-tight text-green-900 dark:text-green-50 font-medium">{opp}</span>
                   </li>
-
-                ))}
+                )) || <li className="text-sm opacity-50 italic">No opportunities identified</li>}
               </ul>
             </div>
           </div>

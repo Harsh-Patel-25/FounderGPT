@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Bento4 from "@/components/Bento4";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -164,63 +165,7 @@ const Landing = () => {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-40 right-20 w-80 h-80 bg-primary/20 rounded-full blur-3xl opacity-50" />
-          <div className="absolute bottom-40 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl opacity-50" />
-          <div className="absolute top-1/2 left-1/2 w-full h-full bg-gradient-to-b from-background via-transparent to-background" />
-        </div>
-
-        <div className="container max-w-6xl mx-auto px-6">
-          <div className="text-center space-y-8 mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">The Future of Startup Validation</span>
-            </div>
-
-            <h1 className="text-5xl md:text-7xl font-heading font-bold gradient-text leading-tight">
-              Validate Your Startup Idea in Minutes
-            </h1>
-
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Get AI-powered analysis, market insights, competitive intelligence, and investor-ready strategies—all in one platform. Transform your idea into a comprehensive business plan faster than ever.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-              <Button
-                onClick={() => navigate("/register")}
-                size="lg"
-                className="text-base h-12 gap-2 glow-primary"
-              >
-                Start Free <ArrowRight className="w-4 h-4" />
-              </Button>
-              <Button
-                onClick={() => navigate("/about")}
-                size="lg"
-                variant="outline"
-                className="text-base h-12"
-              >
-                Learn More
-              </Button>
-            </div>
-
-            <p className="text-sm text-muted-foreground">
-              ✨ No credit card required • ⚡ Get results in 2 minutes
-            </p>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center p-4 rounded-lg bg-card/50 border border-border/50 backdrop-blur">
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">{stat.value}</div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Bento4 />
 
       {/* Benefits Section */}
       <section className="py-16 border-t bg-secondary/20">
