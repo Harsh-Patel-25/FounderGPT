@@ -168,72 +168,8 @@ function localAiFallback(systemPrompt, userPrompt) {
       }
     };
   }
-
-  // --- Market Potential (matches frontend MarketPotential type) ---
-  if (lowerPrompt.includes('market potential') || lowerPrompt.includes('"marketpotential"') || lowerPrompt.includes('tam') || lowerPrompt.includes('sam') || lowerPrompt.includes('som')) {
-    return {
-      marketPotential: {
-        tamSamSom: {
-          tam: '$120B',
-          sam: '$25B',
-          som: '$4.5B'
-        },
-        marketGrowthRate: '10% annual growth',
-        marketTrends: [
-          'Increasing digital adoption among target users',
-          'Subscription-based revenue models gaining traction',
-          'AI-enabled personalization driving retention'
-        ],
-        targetDemographics: {
-          primary: ['Millennial professionals', 'Small business owners'],
-          secondary: ['Tech-savvy parents', 'Freelancers and contractors']
-        },
-        marketPenetrationStrategy: 'Launch with a freemium model, partner with niche communities, and expand via targeted digital marketing.',
-        marketRisks: ['Regulatory changes', 'Intense competition from established platforms', 'Customer adoption delays'],
-        opportunities: ['First-mover advantage in underserved niche', 'High-margin subscription upgrades', 'Strategic partnerships with industry influencers']
-      }
-    };
-  }
-
-  // --- Tech Stack (matches frontend TechStackData type) ---
-  if (lowerPrompt.includes('tech') && (lowerPrompt.includes('stack') || lowerPrompt.includes('architect'))) {
-    return {
-      techStack: {
-        frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
-        backend: ['Node.js', 'Express', 'GraphQL'],
-        database: ['PostgreSQL', 'Redis'],
-        infrastructure: ['AWS EC2', 'AWS S3', 'CloudFront CDN'],
-        thirdPartyServices: ['Stripe', 'SendGrid', 'Sentry', 'Auth0'],
-        developmentTools: ['GitHub Actions', 'Docker', 'Jest', 'ESLint']
-      },
-      scopes: {
-        phase1MVP: {
-          scope: 'Core product features, user authentication, basic dashboard',
-          technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-          estimatedDevelopmentTime: '8-12 weeks'
-        },
-        phase2Growth: {
-          scope: 'Analytics dashboard, API integrations, mobile responsiveness',
-          technologies: ['GraphQL', 'Redis', 'AWS Lambda', 'SendGrid'],
-          estimatedDevelopmentTime: '10-14 weeks'
-        },
-        phase3Scale: {
-          scope: 'Microservices architecture, ML pipeline, enterprise features',
-          technologies: ['Kubernetes', 'TensorFlow', 'Elasticsearch', 'Kafka'],
-          estimatedDevelopmentTime: '16-20 weeks'
-        }
-      },
-      infrastructureNeeds: {
-        hosting: 'AWS with multi-AZ deployment for high availability',
-        scalability: 'Auto-scaling groups with load balancing and CDN caching',
-        security: 'WAF, SSL/TLS, SOC2 compliance, encrypted data at rest',
-        monitoring: 'Sentry for errors, Datadog for APM, CloudWatch for infra'
-      }
-    };
-  }
-
   // --- Funding (matches frontend FundingData type) ---
-  if (lowerPrompt.includes('funding') || lowerPrompt.includes('burn rate') || lowerPrompt.includes('venture capital')) {
+  else if (lowerPrompt.includes('fundingrequirements') || lowerPrompt.includes('burnrate') || lowerPrompt.includes('venture capital')) {
     return {
       fundingRequirements: {
         seed: {
@@ -269,9 +205,69 @@ function localAiFallback(systemPrompt, userPrompt) {
       fundingStrategy: 'Bootstrap to MVP, raise a pre-seed/angel round for initial traction, then pursue institutional seed funding after demonstrating product-market fit with 100+ active users and growing MRR.'
     };
   }
-
+  // --- Market Potential (matches frontend MarketPotential type) ---
+  else if (lowerPrompt.includes('market potential') || lowerPrompt.includes('"marketpotential"') || lowerPrompt.includes('tam/sam/som')) {
+    return {
+      marketPotential: {
+        tamSamSom: {
+          tam: '$120B',
+          sam: '$25B',
+          som: '$4.5B'
+        },
+        marketGrowthRate: '10% annual growth',
+        marketTrends: [
+          'Increasing digital adoption among target users',
+          'Subscription-based revenue models gaining traction',
+          'AI-enabled personalization driving retention'
+        ],
+        targetDemographics: {
+          primary: ['Millennial professionals', 'Small business owners'],
+          secondary: ['Tech-savvy parents', 'Freelancers and contractors']
+        },
+        marketPenetrationStrategy: 'Launch with a freemium model, partner with niche communities, and expand via targeted digital marketing.',
+        marketRisks: ['Regulatory changes', 'Intense competition from established platforms', 'Customer adoption delays'],
+        opportunities: ['First-mover advantage in underserved niche', 'High-margin subscription upgrades', 'Strategic partnerships with industry influencers']
+      }
+    };
+  }
+  // --- Tech Stack (matches frontend TechStackData type) ---
+  else if (lowerPrompt.includes('techstack') || lowerPrompt.includes('architect') || (lowerPrompt.includes('tech') && lowerPrompt.includes('stack') && !lowerPrompt.includes('funding'))) {
+    return {
+      techStack: {
+        frontend: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+        backend: ['Node.js', 'Express', 'GraphQL'],
+        database: ['PostgreSQL', 'Redis'],
+        infrastructure: ['AWS EC2', 'AWS S3', 'CloudFront CDN'],
+        thirdPartyServices: ['Stripe', 'SendGrid', 'Sentry', 'Auth0'],
+        developmentTools: ['GitHub Actions', 'Docker', 'Jest', 'ESLint']
+      },
+      scopes: {
+        phase1MVP: {
+          scope: 'Core product features, user authentication, basic dashboard',
+          technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
+          estimatedDevelopmentTime: '8-12 weeks'
+        },
+        phase2Growth: {
+          scope: 'Analytics dashboard, API integrations, mobile responsiveness',
+          technologies: ['GraphQL', 'Redis', 'AWS Lambda', 'SendGrid'],
+          estimatedDevelopmentTime: '10-14 weeks'
+        },
+        phase3Scale: {
+          scope: 'Microservices architecture, ML pipeline, enterprise features',
+          technologies: ['Kubernetes', 'TensorFlow', 'Elasticsearch', 'Kafka'],
+          estimatedDevelopmentTime: '16-20 weeks'
+        }
+      },
+      infrastructureNeeds: {
+        hosting: 'AWS with multi-AZ deployment for high availability',
+        scalability: 'Auto-scaling groups with load balancing and CDN caching',
+        security: 'WAF, SSL/TLS, SOC2 compliance, encrypted data at rest',
+        monitoring: 'Sentry for errors, Datadog for APM, CloudWatch for infra'
+      }
+    };
+  }
   // --- Risk Assessment (matches frontend RiskAssessmentData type) ---
-  if (lowerPrompt.includes('risk') && (lowerPrompt.includes('assess') || lowerPrompt.includes('management'))) {
+  else if (lowerPrompt.includes('riskassessment') || lowerPrompt.includes('criticalsuccessfactors')) {
     return {
       riskAssessment: {
         risks: [
@@ -305,9 +301,8 @@ function localAiFallback(systemPrompt, userPrompt) {
       }
     };
   }
-
   // --- GTM Strategy (matches frontend GTMStrategy type) ---
-  if (lowerPrompt.includes('go-to-market') || lowerPrompt.includes('gtm')) {
+  else if (lowerPrompt.includes('gtmstrategy') || lowerPrompt.includes('go-to-market')) {
     return {
       gtmStrategy: {
         marketEntry: {

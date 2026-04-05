@@ -189,14 +189,16 @@ const Login = () => {
 
                 {/* Remember Me */}
                 <div className="flex items-center space-x-2">
-                  <Checkbox
+                  <input
                     id="rememberMe"
                     name="rememberMe"
+                    type="checkbox"
+                    className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                     checked={formData.rememberMe}
-                    onCheckedChange={(checked) =>
+                    onChange={(e) =>
                       setFormData((prev) => ({
                         ...prev,
-                        rememberMe: checked as boolean,
+                        rememberMe: e.target.checked,
                       }))
                     }
                   />
@@ -211,6 +213,34 @@ const Login = () => {
                   className="w-full mt-6"
                 >
                   {loading ? "Signing in..." : "Sign In"}
+                </Button>
+
+                <div className="relative my-4">
+                  <div className="absolute inset-0 flex items-center">
+                    <span className="w-full border-t border-muted-foreground/20"></span>
+                  </div>
+                  <div className="relative flex justify-center text-xs uppercase">
+                    <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+                  </div>
+                </div>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="w-full border-primary/20 hover:bg-primary/5 hover:text-primary"
+                  onClick={() => {
+                    setFormData({
+                      email: "demo@foundergpt.ai",
+                      password: "demo123456",
+                      rememberMe: false,
+                    });
+                    setTimeout(() => {
+                      const event = new Event('submit', { cancelable: true, bubbles: true });
+                      document.querySelector('form')?.dispatchEvent(event);
+                    }, 100);
+                  }}
+                >
+                  Demo Login
                 </Button>
               </form>
 

@@ -412,9 +412,20 @@ const Landing = () => {
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <Button
-              onClick={() => navigate("/login")}
+              onClick={() => {
+                navigate("/login");
+                // The Login page now has the demo button, but we can also auto-trigger it or just let them click it there.
+              }}
               size="lg"
               variant="outline"
+              className="text-base h-12 border-primary/20 hover:bg-primary/5 hover:text-primary"
+            >
+              View Demo
+            </Button>
+            <Button
+              onClick={() => navigate("/login")}
+              size="lg"
+              variant="ghost"
               className="text-base h-12"
             >
               Sign In
